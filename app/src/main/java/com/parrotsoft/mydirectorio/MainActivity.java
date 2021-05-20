@@ -9,6 +9,9 @@ import android.widget.EditText;
 
 import com.parrotsoft.mydirectorio.services.Aut;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText edUsuario, edClave;
@@ -36,7 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnEntrar:
-                Aut.login(this,this.edUsuario.getText().toString(),edClave.getText().toString());
+                Map<String, String> params = new HashMap();
+                params.put("usuario", this.edUsuario.getText().toString());
+                params.put("clave", edClave.getText().toString());
+                Aut.login(this, params);
                 break;
             case R.id.btnRegistrate:
                 break;

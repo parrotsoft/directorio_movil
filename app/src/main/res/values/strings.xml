@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyDirectorio</string>
+    <string name="url">http://webapp.miguellopezariza.com/</string>
 </resources>

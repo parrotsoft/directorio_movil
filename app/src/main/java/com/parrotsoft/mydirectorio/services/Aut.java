@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.parrotsoft.mydirectorio.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,23 +21,22 @@ import java.util.Map;
 
 public class Aut {
 
-    private static String url = "http://webapp.miguellopezariza.com/login";
-
-
-    public static void login(Context context, String usuario, String clave) {
-        Map<String, String> params = new HashMap();
-        params.put("usuario", usuario);
-        params.put("clave", clave);
+    public static void login(Context context, Map<String, String> params) {
 
         JSONObject parameters = new JSONObject(params);
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+        String url = context.getString(R.string.url)+"login";
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url,
+                parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     if (response.has("id")) {
-                        Toast.makeText(context.getApplicationContext(), "Datos correctos, entre...", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context.getApplicationContext(),
+                                "Datos correctos, entre...", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(context.getApplicationContext(), response.getString("mensaje"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context.getApplicationContext(),
+                                response.getString("mensaje"), Toast.LENGTH_LONG).show();
                         System.out.println(response.toString());
                     }
                 } catch (JSONException e) {
@@ -48,11 +48,12 @@ public class Aut {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 System.err.println(error);
-                Toast.makeText(context.getApplicationContext(), "Error "+error.getMessage() , Toast.LENGTH_LONG).show();
+                Toast.makeText(context.getApplicationContext(), "Error "+error.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
 
-        Volley.newRequestQueue(context.getApplicationContext()).add(jsonRequest);
+        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(jsonRequest);
 
     }
 
