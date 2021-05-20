@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class Auth {
 
-    public static void login(Context context, Map<String, String> params) {
+    public static void login(Context context, Map<String, String> params, final VolleyCallback callback) {
 
         JSONObject parameters = new JSONObject(params);
         String url = context.getString(R.string.url)+"login";
@@ -27,16 +27,7 @@ public class Auth {
                 parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    if (response.has("id")) {
-                        Toast.makeText(context.getApplicationContext(),
-                                "Datos correctos, entre...", Toast.LENGTH_LONG).show();
-                    } else {
-                        Helpers.dialog(context,"Error",response.getString("mensaje"));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                callback.onSuccess(response, context);
             }
         }, new Response.ErrorListener() {
             @Override

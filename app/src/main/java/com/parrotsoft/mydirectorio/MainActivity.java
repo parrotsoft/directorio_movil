@@ -2,6 +2,7 @@ package com.parrotsoft.mydirectorio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.parrotsoft.mydirectorio.services.Auth;
+import com.parrotsoft.mydirectorio.services.helper.DialogCallback;
+import com.parrotsoft.mydirectorio.services.helper.Helpers;
+import com.parrotsoft.mydirectorio.services.helper.VolleyCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,8 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 onEntrar();
                 break;
             case R.id.btnRegistrate:
-                Intent intent = new Intent(this, RegistroActivity.class);
-                startActivity(intent);
+                onRegistrate();
                 break;
         }
     }
@@ -53,8 +59,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Map<String, String> params = new HashMap();
         params.put("usuario", this.edUsuario.getText().toString());
         params.put("clave", edClave.getText().toString());
-        Auth.login(this, params);
+        Auth.login(this, params, new VolleyCallback() {
+            @Override
+            public void onSuccess(JSONObject result, Context context) {
+                try {
+                    if (result.has("id")) {
+                        Helpers.dialog(context, "Perfecto", "Datos correctos", new DialogCallback() {
+                                    @Override
+                                    public void onOk(Context context) {
+                                        Intent intent = new Intent(context, HomeActivity.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                        );
+                    } else {
+                        Helpers.dialog(context,"Error",result.getString("mensaje"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
-
+    private void onRegistrate() {
+        Intent intent = new Intent(this, RegistroActivity.class);
+        startActivity(intent);
+    }
 }
