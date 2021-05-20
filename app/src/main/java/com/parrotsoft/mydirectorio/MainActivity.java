@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.parrotsoft.mydirectorio.services.Aut;
+import com.parrotsoft.mydirectorio.services.Auth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,14 +39,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnEntrar:
-                Map<String, String> params = new HashMap();
-                params.put("usuario", this.edUsuario.getText().toString());
-                params.put("clave", edClave.getText().toString());
-                Aut.login(this, params);
+                onEntrar();
                 break;
             case R.id.btnRegistrate:
                 break;
         }
+    }
+
+    private void onEntrar() {
+        Map<String, String> params = new HashMap();
+        params.put("usuario", this.edUsuario.getText().toString());
+        params.put("clave", edClave.getText().toString());
+        Auth.login(this, params);
     }
 
 

@@ -19,7 +19,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Aut {
+public class Auth {
 
     public static void login(Context context, Map<String, String> params) {
 
