@@ -3,20 +3,17 @@ package com.parrotsoft.mydirectorio.services;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.parrotsoft.mydirectorio.R;
+import com.parrotsoft.mydirectorio.services.helper.Helpers;
+import com.parrotsoft.mydirectorio.services.helper.VolleyCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.Map;
 
 public class Auth {
@@ -35,9 +32,7 @@ public class Auth {
                         Toast.makeText(context.getApplicationContext(),
                                 "Datos correctos, entre...", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(context.getApplicationContext(),
-                                response.getString("mensaje"), Toast.LENGTH_LONG).show();
-                        System.out.println(response.toString());
+                        Helpers.dialog(context,"Error",response.getString("mensaje"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -47,15 +42,30 @@ public class Auth {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                System.err.println(error);
-                Toast.makeText(context.getApplicationContext(), "Error "+error.getMessage(),
-                        Toast.LENGTH_LONG).show();
+                Helpers.dialog(context,"Error",error.getMessage());
             }
         });
-
         MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(jsonRequest);
-
     }
 
+    public static void registro(Context context, Map<String, String> params, final VolleyCallback callback) {
+        JSONObject parameters = new JSONObject(params);
+        String url = context.getString(R.string.url)+"usuario";
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url,
+                parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callback.onSuccess(response, context);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Helpers.dialog(context,"Error",error.getMessage());
+            }
+        });
+        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(jsonRequest);
+    }
 
 }
