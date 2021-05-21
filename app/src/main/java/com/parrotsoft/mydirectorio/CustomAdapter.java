@@ -44,12 +44,10 @@ public class CustomAdapter extends BaseAdapter {
         try {
             JSONObject responseObj = data.getJSONObject(position);
             TextView tvNombres = (TextView) convertView.findViewById(R.id.tvNombres);
-            TextView tvApellidos = (TextView) convertView.findViewById(R.id.tvApellidos);
             TextView tvCorreo = (TextView) convertView.findViewById(R.id.tvCorreo);
             TextView tvCelular = (TextView) convertView.findViewById(R.id.tvCelular);
 
-            tvNombres.setText(responseObj.getString("nombres"));
-            tvApellidos.setText(responseObj.getString("apellidos"));
+            tvNombres.setText(responseObj.getString("nombres")+" "+responseObj.getString("apellidos"));
             tvCorreo.setText(responseObj.getString("correo"));
             tvCelular.setText(responseObj.getString("celular"));
         } catch (JSONException e) {
