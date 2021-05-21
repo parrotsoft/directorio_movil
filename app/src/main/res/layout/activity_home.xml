@@ -9,21 +9,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginBottom="10dp">
 
             <Button
                 android:id="@+id/btnAgregar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:icon="@drawable/ic_baseline_person_add_24"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:text="Agregar"/>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +40,7 @@
                 android:id="@+id/lvContactos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="#f00"
+                android:divider="@color/cardview_dark_background"
                 android:dividerHeight="1dp"/>
 
         </LinearLayout>

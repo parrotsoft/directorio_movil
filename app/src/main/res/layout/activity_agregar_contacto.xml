@@ -9,37 +9,99 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <EditText
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Contacto"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_agenda"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombres"
+            app:startIconDrawable="@drawable/ic_baseline_people_outline_24">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edNombres"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nombres"/>
+            android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/edApellidos"
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Apellidos"/>
+            android:hint="Apellidos"
+            app:startIconDrawable="@drawable/ic_baseline_emoji_people_24">
 
-        <EditText
-            android:id="@+id/edCorreo"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo"/>
+            android:hint="Correo"
+            app:startIconDrawable="@drawable/ic_baseline_alternate_email_24">
 
-        <EditText
-            android:id="@+id/edCelular"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Celular"/>
+            android:hint="Celular"
+            app:startIconDrawable="@drawable/ic_baseline_perm_phone_msg_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/btnGuardar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guardar"/>
+            android:layout_height="60dp"
+            android:text="Guardar"
+            android:layout_marginTop="20dp"
+            app:icon="@drawable/ic_baseline_save_24"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
 
     </LinearLayout>
 

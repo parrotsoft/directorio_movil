@@ -12,26 +12,67 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <EditText
-            android:id="@+id/edUsuario"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/usuario"
-            android:layout_marginTop="20dp"/>
+            android:text="Nuevo Usuario"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
-        <EditText
-            android:id="@+id/edClave"
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_programmer"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/usuario"
+        app:startIconDrawable="@drawable/ic_baseline_people_outline_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/clave"
-            android:layout_marginTop="20dp"/>
+            app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edClave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/btnRegistrate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="@string/registrate"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            app:icon="@drawable/ic_baseline_memory_24"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
