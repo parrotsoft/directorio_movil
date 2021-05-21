@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDirectorio"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".VerContactoActivity"></activity>
+        <activity android:name=".AgregarContactoActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".RegistroActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

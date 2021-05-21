@@ -67,8 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Helpers.dialog(context, "Perfecto", "Datos correctos", new DialogCallback() {
                                     @Override
                                     public void onOk(Context context) {
-                                        Intent intent = new Intent(context, HomeActivity.class);
-                                        startActivity(intent);
+                                        try {
+                                            Intent intent = new Intent(context, HomeActivity.class);
+                                            intent.putExtra("usuario_id", result.getInt("id"));
+                                            startActivity(intent);
+                                        }catch (Exception e) {
+                                            Helpers.dialog(context,"Error",e.getMessage());
+                                        }
                                     }
                                 }
                         );
